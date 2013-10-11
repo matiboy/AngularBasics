@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AngularBasicsApp', ['ng-route'])
+angular.module('AngularBasicsApp', ['ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

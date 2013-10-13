@@ -1,5 +1,8 @@
 <div class="hero-unit">
   <h1>Here's where you are</h1>
+  Type: <select ng-model="addressFilter" ng-options="type as type for type in addressTypes"></select>
+  <p>Currently filtering by: {{addressFilter}}</p>
+  <p>Results:</p>
   <ul>
       <li ng-repeat="part in addressParts">{{part.long_name}}</li>
   </ul>

@@ -1,31 +1,23 @@
 'use strict';
 
 angular.module('AngularBasicsApp')
-  .controller('MainCtrl', function ($scope, Mapservice) {
-    $scope.title = 'Hello';
-    var addressParts;
-    Mapservice.getAddress('Somerset, Kuala Lumpur, Malaysia').then(function(parts) {
-    	console.debug('Received parts for address: ', parts);
-    	addressParts = parts;
-    	$scope.addressParts = parts;
-    	// Create an array of unique types of addresses, by adding types from each result.
-    	// Using union ensure unicity
-    	var types = [];
-    	_.each(parts, function(part) {
-    		types = _.union(types, part.types);
-    	});
-    	$scope.addressTypes = types;
+  .controller('MainCtrl', function ($scope, Userservice) {
+  	// Initialize
+  	this.loggedIn = Userservice.isLoggedIn;
 
-    	// Listen to changes on filter and filter parts accordingly
-    	// $watch will be discussed at a later stage
-    	$scope.$watch('addressFilter', function(nv, ov){
-    		console.debug('Address filter changed from ' + ov + ' to ' + nv);
-    		// filter parts
-    		if(nv){
-    			$scope.addressParts = _.filter(addressParts, function(part) {
-	    			return _.contains(part.types,nv);
-	    		});
-    		}
-    	});
-    });
+  	// Set up listeners
+    $scope.$on(Userservice.events.LOGGED_IN, _.bind(function(e, username) {
+    	this.loggedIn = true;
+    	this.username = username;
+    }, this));
+
+    $scope.$on(Userservice.events.LOGGED_OUT, _.bind(function(e) {
+    	this.loggedIn = false;
+    }, this));
+
+    $scope.$on(Userservice.events.USERNAME_CHANGED, _.bind(function(e, randomWord, nv) {
+    	console.log('Username change recorded in main ', randomWord, nv);
+    	this.username = nv;
+    	e.stopPropagation();
+    }, this));
   });

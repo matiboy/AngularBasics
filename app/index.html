@@ -27,6 +27,16 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div ng-controller="UserCtrl as user">
+      <div ng-show="!user.isLoggedIn">
+        Username: <input ng-model="credentials.username" type="text"><br>
+        Password: <input ng-model="credentials.password" type="password"><br>
+        <span class="btn btn-primary" ng-click="user.login()">Log in</span>
+      </div>
+      <div ng-show="user.isLoggedIn">
+        <span class="btn btn-primary" ng-click="user.logout()">Log out</span>
+      </div>
+    </div>
     <div class="container" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -70,7 +80,9 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/mapService.js"></script>
+        <script src="scripts/services/userService.js"></script>
+        <script src="scripts/controllers/User.js"></script>
+        <script src="scripts/controllers/UserEdit.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -1,9 +1,11 @@
 <div class="hero-unit">
-  <h1>Here's where you are</h1>
-  Type: <select ng-model="addressFilter" ng-options="type as type for type in addressTypes"></select>
-  <p>Currently filtering by: {{addressFilter}}</p>
-  <p>Results:</p>
-  <ul>
-      <li ng-repeat="part in addressParts">{{part.long_name}}</li>
-  </ul>
+  <h1>Your profile:</h1>
+  <div ng-show="main.loggedIn">Hi {{main.username}}
+  	<div ng-controller="UsereditCtrl">
+  		Change user name: <input ng-model="username" type="text"><br>
+  		Numbers: <span class="btn btn-small" ng-click="addNumber()">+</span>
+  		<p ng-repeat="n in randomNumbers">{{n}}</p>
+  	</div>
+  </div>
+  <div ng-show="!main.loggedIn">Please login first</div>
 </div>

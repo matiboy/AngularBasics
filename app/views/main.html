@@ -3,10 +3,11 @@
   	<ul>
   		<li ng-repeat="item in vehicles.items" ng-click="vehicles.showDetails()">{{item}}</li>
   	</ul>
-  	<div ng-controller="TrainsCtrl as trains">
+  	<!-- Shamelessly invalid HTML cause I can't find a good example for this, pretend that trains is under the last item in the previous list -->
+  	<ul ng-controller="TrainsCtrl as trains">
 		<ul>
   			<li ng-repeat="item in trains.items" ng-click="dontForget()">{{item}}</li>
   		</ul>
-  	</div>
+  	</ul>
   </div>
 </div>

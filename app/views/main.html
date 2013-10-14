@@ -1,9 +1,10 @@
 <div class="hero-unit">
-  <h1>Here's where you are</h1>
+  <h1>Locator</h1>
+  Search: <input type="text" ng-model="search"><br>
   Type: <select ng-model="addressFilter" ng-options="type as type for type in addressTypes"></select>
   <p>Currently filtering by: {{addressFilter}}</p>
   <p>Results:</p>
   <ul>
-      <li ng-repeat="part in addressParts">{{part.long_name}}</li>
+      <li ng-repeat="address in results">{{address.formatted_address}}</li>
   </ul>
 </div>

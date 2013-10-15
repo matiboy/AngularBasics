@@ -7,6 +7,10 @@ angular.module('AngularBasicsApp', ['ngRoute', 'GMaps'])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/lazy', {
+        templateUrl: 'views/lazy.html',
+        controller: 'LazyCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

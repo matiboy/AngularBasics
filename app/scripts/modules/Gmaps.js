@@ -6,19 +6,17 @@ angular.module('GMaps', ['ng'])
     var urls = {
       LOCATE: _.template( 'http://<%= base %>/maps/api/geocode/json?address=<%= address %>&sensor=false' )
     };
-    var status = {
-      NO_RESULT: 'ZERO_RESULTS',
-      OK: 'OK'
-    };
+    
     // Configuration functions
     this.setBaseUrl = function(url) {
       base = url;
     }
 
     // Provider
-    this.$get = function($http) {
+    this.$get = function($http, GMapsStatus) {
       return {
         baseUrl: base,
+        // Takes an address
         locate: function(address){ 
           return $http.get(urls.LOCATE({
             base: base,
@@ -30,8 +28,10 @@ angular.module('GMaps', ['ng'])
               message: 'No internet'
             }
           });
-        },
-        status: status
+        }
       }
     }
+  }).constant('GMapsStatus', {
+    NO_RESULT: 'ZERO_RESULTS',
+    OK: 'OK'
   });

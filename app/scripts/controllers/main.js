@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('AngularBasicsApp')
-  .controller('MainCtrl', function ($scope, Mapservice) {
+  .controller('MainCtrl', function ($scope, Mapservice, MapserviceErrors) {
   	$scope.search = Mapservice.current();
   	$scope.$watch('search', _.debounce(function(nv) {
   		// Watches are called once on creation, ignore
@@ -16,9 +16,9 @@ angular.module('AngularBasicsApp')
   				}
   			}, function(code) {
   				var s = code.status;
-  				if(s === Mapservice.errors.NO_RESULT) {
+  				if(s === MapserviceErrors.NO_RESULT) {
   					alert('No result...');
-  				} else if(s === Mapservice.errors.NO_INTERNET) {
+  				} else if(s === MapserviceErrors.NO_INTERNET) {
   					alert('No internet connection');
   				} else {
   					alert('Unknown error');

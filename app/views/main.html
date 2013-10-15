@@ -1,9 +1,32 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div>
+  <tabset>
+    <tab heading="Static title">Static content</tab>
+    <tab ng-repeat="tab in main.tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+      {{tab.content}}
+    </tab>
+    <tab ng-repeat="tab in main.trustedTabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+      <tab-content ng-bind-html="tab.content">
+      </tab-content>
+    </tab>
+    <tab select="main.alertMe()">
+      <tab-heading>
+        <i class="icon-bell"></i> Select me for alert!
+      </tab-heading>
+      I've got an HTML heading, and a select callback. Pretty cool!
+    </tab>
+    <tab heading="GHI">
+      <tab-content>
+        G<br>H<br>I
+      </tab-content>
+    </tab>
+    <tab heading="JKL">
+      <tab-content ng-bind-html="main.jkl">
+      </tab-content>
+    </tab>
+    <div tab heading="As an attribute">Hello</div>
+  </tabset>
+  <hr>
+  <input ng-model="main.tab.title" placeholder="Name">
+  <input ng-model="main.tab.content" placeholder="Content">
+  <span class="btn" ng-click="main.addTab()">Add</span>
 </div>

@@ -23,5 +23,5 @@ angular.module('AngularBasicsApp')
       });
     }
 
-    this.alertMe(_.partial(window.alert, 'You ve selected the select tab'));
+    this.alertMe = angular.bind(window, window.alert, 'You ve selected the select tab');
   });

@@ -5,7 +5,7 @@ angular.module('AngularBasicsApp', ['ngRoute', 'ui.bootstrap.tabs'])
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl as main'
       })
       .otherwise({
         redirectTo: '/'

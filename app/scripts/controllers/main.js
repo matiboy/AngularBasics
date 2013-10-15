@@ -2,5 +2,7 @@
 
 angular.module('AngularBasicsApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.now = moment();
+    this.saySomething = angular.bind(this, function() {
+      alert(this.tz);
+    });
   });

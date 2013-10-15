@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AngularBasicsApp', ['ngRoute'])
+angular.module('AngularBasicsApp', ['ngRoute', 'ui.bootstrap.tabs'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
